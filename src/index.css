@@ -1,0 +1,124 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;900&family=Cormorant+Garamond:wght@700&family=Inter:wght@300;400;500&display=swap');
+@import "tailwindcss";
+@import "tw-animate-css";
+@plugin "@tailwindcss/typography";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+
+  --font-sans: var(--app-font-sans);
+  --font-serif: var(--app-font-serif);
+  --font-mono: var(--app-font-mono);
+}
+
+:root {
+  --background: 240 7% 5%;
+  --foreground: 40 24% 89%;
+  --border: 240 7% 12%;
+  --input: 240 7% 12%;
+  --ring: 33 81% 54%;
+
+  --card: 240 9% 11%;
+  --card-foreground: 40 24% 89%;
+  --card-border: 240 7% 12%;
+
+  --popover: 240 9% 11%;
+  --popover-foreground: 40 24% 89%;
+  --popover-border: 240 7% 12%;
+
+  --primary: 33 81% 54%;
+  --primary-foreground: 0 0% 0%;
+  --secondary: 240 7% 12%;
+  --secondary-foreground: 40 24% 89%;
+  --muted: 240 7% 12%;
+  --muted-foreground: 240 4% 52%;
+  --accent: 280 81% 60%;
+  --accent-foreground: 0 0% 100%;
+  --destructive: 6 70% 46%;
+  --destructive-foreground: 0 0% 100%;
+
+  --app-font-sans: 'Inter', sans-serif;
+  --app-font-serif: 'Cormorant Garamond', serif;
+  --app-font-mono: Menlo, monospace;
+}
+
+.dark {
+  --background: 240 7% 5%;
+  --foreground: 40 24% 89%;
+  --border: 240 7% 12%;
+  --input: 240 7% 12%;
+  --ring: 33 81% 54%;
+
+  --card: 240 9% 11%;
+  --card-foreground: 40 24% 89%;
+  --card-border: 240 7% 12%;
+
+  --popover: 240 9% 11%;
+  --popover-foreground: 40 24% 89%;
+  --popover-border: 240 7% 12%;
+
+  --primary: 33 81% 54%;
+  --primary-foreground: 0 0% 0%;
+  --secondary: 240 7% 12%;
+  --secondary-foreground: 40 24% 89%;
+  --muted: 240 7% 12%;
+  --muted-foreground: 240 4% 52%;
+  --accent: 280 81% 60%;
+  --accent-foreground: 0 0% 100%;
+  --destructive: 6 70% 46%;
+  --destructive-foreground: 0 0% 100%;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply font-sans antialiased bg-background text-foreground overflow-x-hidden;
+  }
+
+  /* Custom Scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #0D0D0F;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #E8912A44;
+    border-radius: 3px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #E8912A88;
+  }
+}
+
+@keyframes shimmer {
+  0% { background-position: 100% 0; }
+  100% { background-position: -200% 0; }
+}
+@keyframes authBar {
+  0% { background-position: 0% 0; }
+  100% { background-position: 200% 0; }
+}
+@keyframes toastIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes urgentPulse {
+  0% { box-shadow: 0 0 0 0 rgba(192, 57, 43, 0.4); }
+  70% { box-shadow: 0 0 0 10px rgba(192, 57, 43, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(192, 57, 43, 0); }
+}
+@keyframes timerPulse {
+  0% { opacity: 1; text-shadow: 0 0 20px rgba(192,57,43,0.8); }
+  50% { opacity: 0.7; text-shadow: 0 0 0 rgba(192,57,43,0); }
+  100% { opacity: 1; text-shadow: 0 0 20px rgba(192,57,43,0.8); }
+}

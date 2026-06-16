@@ -121,6 +121,9 @@ export default function App() {
           rating: u.rating || 0,
           ratingCount: u.ratingCount || 0,
           joined: u.joined || Date.now(),
+          isVerified: u.isVerified || false,
+          avatarUrl: u.avatarUrl || "",
+          verifiedSkills: u.verifiedSkills || [],
         };
       });
       setWorkers(list);

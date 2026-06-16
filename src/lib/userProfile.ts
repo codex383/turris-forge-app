@@ -27,10 +27,13 @@ export const getUserProfile = async (uid: string) => {
   const data = snap.data() as UserProfile;
   return {
     ...data,
-    skills:    data.skills    ?? [],
-    balance:   data.balance   ?? 0,
-    bio:       data.bio       ?? "",
-    portfolio: data.portfolio ?? "",
+    skills:        data.skills        ?? [],
+    balance:       data.balance       ?? 0,
+    bio:           data.bio           ?? "",
+    portfolio:     data.portfolio     ?? "",
+    isVerified:    data.isVerified    ?? false,
+    avatarUrl:     data.avatarUrl     ?? "",
+    verifiedSkills: data.verifiedSkills ?? [],
   };
 };
 

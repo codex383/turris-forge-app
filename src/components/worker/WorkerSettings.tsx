@@ -86,13 +86,23 @@ export function WorkerSettings({ user, setUser, showToast }: {
       {/* Profile Header */}
       <Card style={{ marginBottom: 16 }}>
         <div style={{ display: "flex", alignItems: "center", gap: 16, marginBottom: 20 }}>
-          <div style={{
-            width: 64, height: 64, borderRadius: "50%",
-            background: `linear-gradient(135deg,${C.cyan},${C.teal})`,
-            display: "flex", alignItems: "center", justifyContent: "center",
-            fontSize: 28, fontWeight: 700, color: "#000",
-            boxShadow: `0 0 20px ${C.cyan}44`, flexShrink: 0,
-          }}>{user.name[0]}</div>
+          <div style={{ position: "relative", flexShrink: 0 }}>
+            <div style={{
+              width: 64, height: 64, borderRadius: "50%",
+              background: `linear-gradient(135deg,${C.cyan},${C.teal})`,
+              display: "flex", alignItems: "center", justifyContent: "center",
+              fontSize: 28, fontWeight: 700, color: "#000",
+              boxShadow: `0 0 20px ${C.cyan}44`, overflow: "hidden",
+            }}>
+              {(user as any).avatarUrl
+                ? <img src={(user as any).avatarUrl} alt={user.name} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                : user.name[0]}
+            </div>
+            <label style={{ position: "absolute", bottom: 0, right: 0, width: 22, height: 22, borderRadius: "50%", background: C.gold, display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer", fontSize: 11, boxShadow: "0 2px 6px #000000aa" }} title="Upload photo">
+              {uploadingAvatar ? "..." : "C"}
+              <input type="file" accept="image/*" onChange={handleAvatarUpload} style={{ display: "none" }} />
+            </label>
+          </div>
           <div>
             <div style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: 22, color: C.ash, fontWeight: 700 }}>{user.name}</div>
             <div style={{ fontSize: 12, color: C.gray, marginTop: 2 }}>{user.email}</div>

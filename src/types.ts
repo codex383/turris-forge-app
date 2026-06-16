@@ -69,6 +69,8 @@ export interface Worker {
   banned?: boolean;
   banReason?: string;
   verifiedSkills?: string[];
+  isVerified?: boolean;
+  avatarUrl?: string;
 }
 
 export interface ActiveJob {

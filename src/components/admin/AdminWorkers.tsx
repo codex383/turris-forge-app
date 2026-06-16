@@ -62,6 +62,12 @@ export function AdminWorkers({ workers }: { workers: Worker[] }) {
     toast(`${worker.name} has been unbanned.`);
   };
 
+  const toggleVerified = async (worker: Worker) => {
+    const newStatus = !(worker as any).isVerified;
+    await updateDoc(doc(db, "users", worker.id), { isVerified: newStatus });
+    toast(`${worker.name} has been ${newStatus ? "verified ✓" : "unverified"}`);
+  };
+
   const filtered = [...workers]
     .filter(w => {
       const matchSearch = w.name.toLowerCase().includes(search.toLowerCase()) ||
@@ -167,6 +173,9 @@ export function AdminWorkers({ workers }: { workers: Worker[] }) {
                 )}
 
                 <div style={{ marginTop: 12, display: "flex", flexDirection: "column", gap: 8 }}>
+                  <Btn onClick={() => toggleVerified(w)} style={{ width: "100%", fontSize: 11, padding: "8px", background: (w as any).isVerified ? `${C.lime}22` : `${C.cyan}22`, border: `1px solid ${(w as any).isVerified ? C.lime : C.cyan}44`, color: (w as any).isVerified ? C.lime : C.cyan }}>
+                    {(w as any).isVerified ? "✓ Verified — Click to Unverify" : "🔍 Verify Worker"}
+                  </Btn>
                   <Btn onClick={() => setVerifyTarget(verifyTarget?.id === w.id ? null : w)} style={{ width: "100%", fontSize: 11, padding: "8px", background: `${C.gold}22`, border: `1px solid ${C.gold}44`, color: C.gold }}>
                     {verifyTarget?.id === w.id ? "✕ Close Verify" : "✓ Verify Skills"}
                   </Btn>

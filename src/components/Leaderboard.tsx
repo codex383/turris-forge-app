@@ -99,9 +99,14 @@ export function Leaderboard({ workers }: { workers: Worker[] }) {
                 <div style={{ width: 28, fontFamily: "'Cormorant Garamond',serif", fontSize: 18, color: i < 3 ? PALETTE[i] : C.gray, fontWeight: 700, textAlign: "center", flexShrink: 0 }}>
                   {i < 3 ? MEDALS[i] : `#${i+1}`}
                 </div>
-                <div style={{ width: 38, height: 38, borderRadius: "50%", background: `linear-gradient(135deg,${PALETTE[i % PALETTE.length]},${C.ash}22)`, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 16, fontWeight: 700, color: "#000", flexShrink: 0 }}>{w.name[0]}</div>
+                <div style={{ width: 38, height: 38, borderRadius: "50%", background: `linear-gradient(135deg,${PALETTE[i % PALETTE.length]},${C.ash}22)`, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 16, fontWeight: 700, color: "#000", flexShrink: 0, overflow: "hidden" }}>
+                  {(w as any).avatarUrl ? <img src={(w as any).avatarUrl} alt={w.name} style={{ width: "100%", height: "100%", objectFit: "cover" }} /> : w.name[0]}
+                </div>
                 <div style={{ flex: 1, minWidth: 0 }}>
-                  <div style={{ fontSize: 13, color: C.ash, fontWeight: 600 }}>{w.name}</div>
+                  <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
+                    <div style={{ fontSize: 13, color: C.ash, fontWeight: 600 }}>{w.name}</div>
+                    {(w as any).isVerified && <span style={{ fontSize: 9, padding: "1px 6px", background: "#00E5FF22", border: "1px solid #00E5FF44", borderRadius: 8, color: "#00E5FF" }}>✓</span>}
+                  </div>
                   <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
                     <div style={{ fontSize: 11, color: C.gray }}>{w.skills[0]}</div>
                     {(() => { const lvl = getLevel(w.history.filter(h => h.status === "Approved").length); return <span style={{ fontSize: 9, padding: "1px 6px", background: lvl.color + "22", border: `1px solid ${lvl.color}44`, borderRadius: 8, color: lvl.color, fontFamily: "'Barlow Condensed',sans-serif" }}>{lvl.icon} {lvl.label}</span>; })()}

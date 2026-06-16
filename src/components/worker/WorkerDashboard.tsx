@@ -164,9 +164,14 @@ const workerId = user.id || (user as any).uid;
 
         <div style={{ padding: "14px 18px 14px", borderBottom: `1px solid #ffffff07` }}>
           <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 12 }}>
-            <div style={{ width: 42, height: 42, borderRadius: "50%", background: `linear-gradient(135deg,${C.cyan},${C.teal})`, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 18, fontWeight: 700, color: "#000", flexShrink: 0, boxShadow: `0 0 14px ${C.cyan}44` }}>{user.name[0]}</div>
+            <div style={{ width: 42, height: 42, borderRadius: "50%", background: `linear-gradient(135deg,${C.cyan},${C.teal})`, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 18, fontWeight: 700, color: "#000", flexShrink: 0, boxShadow: `0 0 14px ${C.cyan}44`, overflow: "hidden" }}>
+              {(user as any).avatarUrl ? <img src={(user as any).avatarUrl} alt={user.name} style={{ width: "100%", height: "100%", objectFit: "cover" }} /> : user.name[0]}
+            </div>
             <div style={{ minWidth: 0 }}>
-              <div style={{ fontSize: 13, color: C.ash, fontWeight: 600, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{user.name}</div>
+              <div style={{ display: "flex", alignItems: "center", gap: 4, flexWrap: "wrap" }}>
+                <div style={{ fontSize: 13, color: C.ash, fontWeight: 600, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{user.name}</div>
+                {(user as any).isVerified && <span style={{ fontSize: 9, padding: "1px 5px", background: "#00E5FF22", border: "1px solid #00E5FF44", borderRadius: 8, color: "#00E5FF" }}>✓</span>}
+              </div>
               <div style={{ display: "flex", alignItems: "center", gap: 6, marginTop: 2 }}>
                 <div style={{ fontSize: 9, color: C.cyan, fontFamily: "'Barlow Condensed',sans-serif", letterSpacing: "0.15em", textTransform: "uppercase" }}>Creative</div>
                 {(() => { const lvl = getLevel(myApproved.length); return <span style={{ fontSize: 9, padding: "1px 6px", background: lvl.color + "22", border: `1px solid ${lvl.color}44`, borderRadius: 10, color: lvl.color, fontFamily: "'Barlow Condensed',sans-serif", letterSpacing: "0.1em" }}>{lvl.icon} {lvl.label}</span>; })()}

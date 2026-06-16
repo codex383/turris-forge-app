@@ -26,11 +26,14 @@ export function WorkerPortfolio({ user, jobs }: { user: Worker; jobs: Job[] }) {
         <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 2, background: `linear-gradient(90deg,${C.violet2},${C.cyan},transparent)` }} />
         <div style={{ display: "flex", gap: 20, alignItems: "flex-start", flexWrap: "wrap" }}>
           <div style={{ width: 72, height: 72, borderRadius: "50%", background: `linear-gradient(135deg,${C.cyan},${C.teal})`, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 30, fontWeight: 700, color: "#000", flexShrink: 0, boxShadow: `0 0 24px ${C.cyan}44` }}>
-            {user.name[0]}
+            {(user as any).avatarUrl ? <img src={(user as any).avatarUrl} alt={user.name} style={{ width: "100%", height: "100%", objectFit: "cover", borderRadius: "50%" }} /> : user.name[0]}
           </div>
           <div style={{ flex: 1, minWidth: 0 }}>
             <div style={{ display: "flex", alignItems: "center", gap: 10, flexWrap: "wrap" }}>
+              <div style={{ display: "flex", alignItems: "center", gap: 10, flexWrap: "wrap" }}>
               <div style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: 26, color: C.ash, fontWeight: 700 }}>{user.name}</div>
+              {(user as any).isVerified && <span style={{ fontSize: 11, padding: "3px 10px", background: "#00E5FF22", border: "1px solid #00E5FF55", borderRadius: 12, color: "#00E5FF", fontFamily: "'Barlow Condensed',sans-serif", letterSpacing: "0.1em" }}>✓ VERIFIED</span>}
+            </div>
               <div style={{ padding: "3px 10px", background: `${level.color}22`, border: `1px solid ${level.color}44`, borderRadius: 20, fontSize: 11, color: level.color, fontFamily: "'Barlow Condensed',sans-serif", letterSpacing: "0.1em" }}>
                 {level.icon} {level.label}
               </div>

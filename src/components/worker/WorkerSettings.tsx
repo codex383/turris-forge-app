@@ -2,6 +2,7 @@ import { useState } from "react";
 import { C, SKILL_CATEGORIES } from "../../data/seed";
 import { Eyebrow, SectionTitle, GlowDivider, Input, Btn, Card } from "../shared";
 import { updateDoc, doc } from "firebase/firestore";
+import { uploadToCloudinary } from "../../lib/cloudinary";
 import { updatePassword, EmailAuthProvider, reauthenticateWithCredential } from "firebase/auth";
 import { auth, db } from "../../lib/firebase";
 import type { Worker } from "../../types";
@@ -16,6 +17,7 @@ export function WorkerSettings({ user, setUser, showToast }: {
   const [portfolio, setPortfolio] = useState(user.portfolio || "");
   const [selectedSkills, setSelectedSkills] = useState(user.skills || []);
   const [saving, setSaving] = useState(false);
+  const [uploadingAvatar, setUploadingAvatar] = useState(false);
 
   const [currentPass, setCurrentPass] = useState("");
   const [newPass, setNewPass] = useState("");
@@ -24,6 +26,22 @@ export function WorkerSettings({ user, setUser, showToast }: {
 
   const toggleSkill = (s: string) =>
     setSelectedSkills(p => p.includes(s) ? p.filter(x => x !== s) : [...p, s]);
+
+  const handleAvatarUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    if (!file.type.startsWith("image/")) return showToast("⚠️ Only image files allowed");
+    setUploadingAvatar(true);
+    try {
+      const uploaded = await uploadToCloudinary(file, "avatars");
+      await updateDoc(doc(db, "users", user.id), { avatarUrl: uploaded.url });
+      setUser(p => ({ ...p, avatarUrl: uploaded.url } as any));
+      showToast("✅ Profile picture updated!");
+    } catch (err: any) {
+      showToast("❌ Upload failed: " + err.message);
+    }
+    setUploadingAvatar(false);
+  };
 
   const saveProfile = async () => {
     if (!name.trim()) return showToast("⚠️ Name cannot be empty");

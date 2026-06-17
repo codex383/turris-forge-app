@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { updateJob } from "../../lib/jobs";
+import { RankFrame } from "../RankFrame";
 import { collection, query, orderBy, onSnapshot } from "firebase/firestore";
 import { db } from "../../lib/firebase";
 import { C } from "../../data/seed";
@@ -164,9 +165,7 @@ const workerId = user.id || (user as any).uid;
 
         <div style={{ padding: "14px 18px 14px", borderBottom: `1px solid #ffffff07` }}>
           <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 12 }}>
-            <div style={{ width: 42, height: 42, borderRadius: "50%", background: `linear-gradient(135deg,${C.cyan},${C.teal})`, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 18, fontWeight: 700, color: "#000", flexShrink: 0, boxShadow: `0 0 14px ${C.cyan}44`, overflow: "hidden" }}>
-              {(user as any).avatarUrl ? <img src={(user as any).avatarUrl} alt={user.name} style={{ width: "100%", height: "100%", objectFit: "cover" }} /> : user.name[0]}
-            </div>
+            <RankFrame worker={user} allWorkers={allWorkers} size={42} />
             <div style={{ minWidth: 0 }}>
               <div style={{ display: "flex", alignItems: "center", gap: 4, flexWrap: "wrap" }}>
                 <div style={{ fontSize: 13, color: C.ash, fontWeight: 600, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{user.name}</div>
@@ -269,7 +268,7 @@ const workerId = user.id || (user as any).uid;
             {view === "my-jobs"     && <WorkerMyJobs jobs={jobs} activeJobs={activeJobs} user={user} onSubmit={submitJob} onMessage={sendMessage} />}
             {view === "balance"     && <WorkerBalance user={user} showToast={showToast} />}
             {view === "leaderboard" && <Leaderboard workers={allWorkers} />}
-            {view === "portfolio"   && <WorkerPortfolio user={user} jobs={jobs} />}
+            {view === "portfolio"   && <WorkerPortfolio user={user} jobs={jobs} allWorkers={allWorkers} />}
             {view === "settings"    && <WorkerSettings user={user} setUser={setUser} showToast={showToast} />}
           </div>
         </div>

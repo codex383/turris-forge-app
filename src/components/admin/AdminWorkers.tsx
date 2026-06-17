@@ -2,6 +2,7 @@ import { useState } from "react";
 import { updateDoc, doc } from "firebase/firestore";
 import { db } from "../../lib/firebase";
 import { C, SKILL_CATEGORIES } from "../../data/seed";
+import { RankFrame } from "../RankFrame";
 import { Eyebrow, SectionTitle, GlowDivider, Badge, Card, Btn } from "../shared";
 import type { Worker } from "../../types";
 
@@ -124,7 +125,7 @@ export function AdminWorkers({ workers }: { workers: Worker[] }) {
                 <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 3, background: `linear-gradient(90deg,${col},transparent)` }} />
 
                 <div style={{ display: "flex", gap: 14, alignItems: "center", marginBottom: 14 }}>
-                  <div style={{ width: 52, height: 52, borderRadius: "50%", background: `linear-gradient(135deg,${col},${C.ash}44)`, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 22, fontWeight: 700, color: "#000", flexShrink: 0, boxShadow: `0 0 16px ${col}44` }}>{w.name[0]}</div>
+                  <RankFrame worker={w} allWorkers={workers} size={52} />
                   <div style={{ flex: 1, minWidth: 0 }}>
                     <div style={{ display: "flex", alignItems: "center", gap: 8, flexWrap: "wrap" }}>
                       <div style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: 18, color: C.ash }}>{w.name}</div>

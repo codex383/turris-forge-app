@@ -1,4 +1,5 @@
 import { C } from "../../data/seed";
+import { RankFrame } from "../RankFrame";
 import { Eyebrow, SectionTitle, GlowDivider, Badge, Card } from "../shared";
 import type { Worker, Job } from "../../types";
 
@@ -8,7 +9,7 @@ const LEVEL_INFO = (count: number) => {
   return { label: "Beginner", color: C.lime, icon: "🌱" };
 };
 
-export function WorkerPortfolio({ user, jobs }: { user: Worker; jobs: Job[] }) {
+export function WorkerPortfolio({ user, jobs, allWorkers }: { user: Worker; jobs: Job[]; allWorkers: Worker[] }) {
   const completedJobs = jobs.filter(j =>
     j.status === "Approved" && j.submissions.some(s => s.workerId === user.id)
   );
@@ -26,8 +27,8 @@ export function WorkerPortfolio({ user, jobs }: { user: Worker; jobs: Job[] }) {
         <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 2, background: `linear-gradient(90deg,${C.violet2},${C.cyan},transparent)` }} />
         <div style={{ display: "flex", gap: 20, alignItems: "flex-start", flexWrap: "wrap" }}>
           <div style={{ width: 72, height: 72, borderRadius: "50%", background: `linear-gradient(135deg,${C.cyan},${C.teal})`, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 30, fontWeight: 700, color: "#000", flexShrink: 0, boxShadow: `0 0 24px ${C.cyan}44` }}>
-            {(user as any).avatarUrl ? <img src={(user as any).avatarUrl} alt={user.name} style={{ width: "100%", height: "100%", objectFit: "cover", borderRadius: "50%" }} /> : user.name[0]}
-          </div>
+          <RankFrame worker={user} allWorkers={allWorkers} size={72} showTitle={true} />
+          <div style={{ display: "none" }}>
           <div style={{ flex: 1, minWidth: 0 }}>
             <div style={{ display: "flex", alignItems: "center", gap: 10, flexWrap: "wrap" }}>
               <div style={{ display: "flex", alignItems: "center", gap: 10, flexWrap: "wrap" }}>

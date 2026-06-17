@@ -1,4 +1,5 @@
 import { C } from "../data/seed";
+import { RankFrame } from "./RankFrame";
 import { Card, Eyebrow, SectionTitle, GlowDivider } from "./shared";
 import type { Worker } from "../types";
 
@@ -54,13 +55,7 @@ export function Leaderboard({ workers }: { workers: Worker[] }) {
                 return (
                   <div key={w.id} style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 8 }}>
                     <div style={{ fontSize: 22 }}>{MEDALS[i]}</div>
-                    <div style={{
-                      width: 52, height: 52, borderRadius: "50%",
-                      background: `linear-gradient(135deg,${PALETTE[i]},${C.ash}33)`,
-                      display: "flex", alignItems: "center", justifyContent: "center",
-                      fontSize: 22, fontWeight: 700, color: "#000",
-                      boxShadow: `0 0 20px ${PALETTE[i]}66`,
-                    }}>{w.name[0]}</div>
+                    <RankFrame worker={w} allWorkers={ranked} size={52} />
                     <div style={{ fontSize: 12, color: C.ash, fontWeight: 600, textAlign: "center", maxWidth: 90 }}>{w.name.split(" ")[0]}</div>
                     <div style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: 16, color: PALETTE[i] }}>₦{w.balance.toLocaleString()}</div>
                     <div style={{
@@ -99,9 +94,7 @@ export function Leaderboard({ workers }: { workers: Worker[] }) {
                 <div style={{ width: 28, fontFamily: "'Cormorant Garamond',serif", fontSize: 18, color: i < 3 ? PALETTE[i] : C.gray, fontWeight: 700, textAlign: "center", flexShrink: 0 }}>
                   {i < 3 ? MEDALS[i] : `#${i+1}`}
                 </div>
-                <div style={{ width: 38, height: 38, borderRadius: "50%", background: `linear-gradient(135deg,${PALETTE[i % PALETTE.length]},${C.ash}22)`, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 16, fontWeight: 700, color: "#000", flexShrink: 0, overflow: "hidden" }}>
-                  {(w as any).avatarUrl ? <img src={(w as any).avatarUrl} alt={w.name} style={{ width: "100%", height: "100%", objectFit: "cover" }} /> : w.name[0]}
-                </div>
+                <RankFrame worker={w} allWorkers={ranked} size={38} />
                 <div style={{ flex: 1, minWidth: 0 }}>
                   <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
                     <div style={{ fontSize: 13, color: C.ash, fontWeight: 600 }}>{w.name}</div>

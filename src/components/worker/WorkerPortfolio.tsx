@@ -1,6 +1,6 @@
 import { C } from "../../data/seed";
-import { RankFrame } from "../RankFrame";
 import { Eyebrow, SectionTitle, GlowDivider, Badge, Card } from "../shared";
+import { RankFrame } from "../RankFrame";
 import type { Worker, Job } from "../../types";
 
 const LEVEL_INFO = (count: number) => {
@@ -26,15 +26,13 @@ export function WorkerPortfolio({ user, jobs, allWorkers }: { user: Worker; jobs
       <Card style={{ marginBottom: 20, background: `linear-gradient(135deg,${C.sur},${C.sur2})`, border: `1px solid ${C.violet2}22`, position: "relative", overflow: "hidden" }}>
         <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 2, background: `linear-gradient(90deg,${C.violet2},${C.cyan},transparent)` }} />
         <div style={{ display: "flex", gap: 20, alignItems: "flex-start", flexWrap: "wrap" }}>
-          <div style={{ width: 72, height: 72, borderRadius: "50%", background: `linear-gradient(135deg,${C.cyan},${C.teal})`, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 30, fontWeight: 700, color: "#000", flexShrink: 0, boxShadow: `0 0 24px ${C.cyan}44` }}>
-          <RankFrame worker={user} allWorkers={allWorkers} size={72} showTitle={true} />
-          <div style={{ display: "none" }}>
+          <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 8 }}>
+            <RankFrame worker={user} allWorkers={allWorkers} size={72} showTitle={true} />
+          </div>
           <div style={{ flex: 1, minWidth: 0 }}>
-            <div style={{ display: "flex", alignItems: "center", gap: 10, flexWrap: "wrap" }}>
-              <div style={{ display: "flex", alignItems: "center", gap: 10, flexWrap: "wrap" }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 10, flexWrap: "wrap", marginBottom: 4 }}>
               <div style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: 26, color: C.ash, fontWeight: 700 }}>{user.name}</div>
               {(user as any).isVerified && <span style={{ fontSize: 11, padding: "3px 10px", background: "#00E5FF22", border: "1px solid #00E5FF55", borderRadius: 12, color: "#00E5FF", fontFamily: "'Barlow Condensed',sans-serif", letterSpacing: "0.1em" }}>✓ VERIFIED</span>}
-            </div>
               <div style={{ padding: "3px 10px", background: `${level.color}22`, border: `1px solid ${level.color}44`, borderRadius: 20, fontSize: 11, color: level.color, fontFamily: "'Barlow Condensed',sans-serif", letterSpacing: "0.1em" }}>
                 {level.icon} {level.label}
               </div>
@@ -131,10 +129,9 @@ export function WorkerPortfolio({ user, jobs, allWorkers }: { user: Worker; jobs
                     <Badge color={C.lime}>✓ Approved</Badge>
                   </div>
                 </div>
-                {/* Files preview */}
                 {sub?.files && sub.files.length > 0 && (
                   <div style={{ display: "flex", gap: 6, marginTop: 10, flexWrap: "wrap" }}>
-                    {sub.files.filter(f => f.type?.startsWith("image")).slice(0, 3).map((f, fi) => (
+                    {sub.files.filter((f: any) => f.type?.startsWith("image")).slice(0, 3).map((f: any, fi: number) => (
                       <a key={fi} href={f.url} target="_blank" rel="noopener noreferrer">
                         <img src={f.url} alt={f.name} style={{ width: 56, height: 56, objectFit: "cover", borderRadius: 6, border: `1px solid ${C.teal}33` }} />
                       </a>

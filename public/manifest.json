@@ -1,0 +1,22 @@
+{
+  "name": "Turris Forge Studios",
+  "short_name": "Turris Forge",
+  "description": "Africa's first anime studio platform — post jobs, animate, get paid.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0D0D0F",
+  "theme_color": "#E8912A",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "https://res.cloudinary.com/dhbpc2mog/image/upload/v1781821674/IMG-20260611-WA0142_1_tkvrp8.jpg",
+      "sizes": "192x192",
+      "type": "image/jpeg"
+    },
+    {
+      "src": "https://res.cloudinary.com/dhbpc2mog/image/upload/v1781821674/IMG-20260611-WA0142_1_tkvrp8.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg"
+    }
+  ]
+}

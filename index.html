@@ -5,6 +5,12 @@
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
     <meta name="description" content="Turris Forge Studios — Africa's first anime studio platform" />
+    <meta name="theme-color" content="#E8912A" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Turris Forge" />
+    <link rel="apple-touch-icon" href="https://res.cloudinary.com/dhbpc2mog/image/upload/v1781821674/IMG-20260611-WA0142_1_tkvrp8.jpg" />
+    <link rel="manifest" href="/manifest.json" />
     <title>Turris Forge Studios</title>
     <style>
       html, body, #root {
@@ -20,5 +26,12 @@
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js');
+        });
+      }
+    </script>
   </body>
 </html>

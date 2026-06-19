@@ -1,32 +1,63 @@
 {
+  "id": "/",
   "name": "Turris Forge Studios",
   "short_name": "Turris Forge",
   "description": "Africa's first anime studio platform — post jobs, animate, get paid.",
   "start_url": "/",
+  "scope": "/",
   "display": "standalone",
   "background_color": "#0D0D0F",
   "theme_color": "#E8912A",
   "orientation": "portrait",
+  "lang": "en-US",
+  "dir": "ltr",
+  "categories": ["business", "productivity"],
+  "prefer_related_applications": false,
   "icons": [
     {
-      "src": "https://res.cloudinary.com/dhbpc2mog/image/upload/w_192,h_192,c_fill,f_png/v1781821674/IMG-20260611-WA0142_1_tkvrp8.jpg",
+      "src": "https://res.cloudinary.com/dhbpc2mog/image/upload/w_192,h_192,c_fill,f_png,q_auto/v1781821674/IMG-20260611-WA0142_1_tkvrp8.png",
       "sizes": "192x192",
       "type": "image/png",
-      "purpose": "any maskable"
+      "purpose": "any"
     },
     {
-      "src": "https://res.cloudinary.com/dhbpc2mog/image/upload/w_512,h_512,c_fill,f_png/v1781821674/IMG-20260611-WA0142_1_tkvrp8.jpg",
+      "src": "https://res.cloudinary.com/dhbpc2mog/image/upload/w_192,h_192,c_fill,f_png,q_auto/v1781821674/IMG-20260611-WA0142_1_tkvrp8.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "https://res.cloudinary.com/dhbpc2mog/image/upload/w_512,h_512,c_fill,f_png,q_auto/v1781821674/IMG-20260611-WA0142_1_tkvrp8.png",
       "sizes": "512x512",
       "type": "image/png",
-      "purpose": "any maskable"
+      "purpose": "any"
+    },
+    {
+      "src": "https://res.cloudinary.com/dhbpc2mog/image/upload/w_512,h_512,c_fill,f_png,q_auto/v1781821674/IMG-20260611-WA0142_1_tkvrp8.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
     }
   ],
   "screenshots": [
     {
-      "src": "https://res.cloudinary.com/dhbpc2mog/image/upload/v1781821674/IMG-20260611-WA0142_1_tkvrp8.jpg",
-      "sizes": "512x512",
-      "type": "image/jpeg",
+      "src": "https://res.cloudinary.com/dhbpc2mog/image/upload/w_1080,h_1920,c_fill,f_png,q_auto/v1781821674/IMG-20260611-WA0142_1_tkvrp8.png",
+      "sizes": "1080x1920",
+      "type": "image/png",
       "form_factor": "narrow"
+    },
+    {
+      "src": "https://res.cloudinary.com/dhbpc2mog/image/upload/w_1920,h_1080,c_fill,f_png,q_auto/v1781821674/IMG-20260611-WA0142_1_tkvrp8.png",
+      "sizes": "1920x1080",
+      "type": "image/png",
+      "form_factor": "wide"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Job Board",
+      "url": "/",
+      "description": "View available jobs"
     }
   ]
 }
